@@ -17,10 +17,11 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 
 load_dotenv()
-APIHOST = os.environ.get("APIHOST", "localhost")
+BACKEND_HOST = os.environ.get("BACKEND_HOST", "localhost")
+FRONTEND_HOST = os.environ.get("FRONTEND_HOST", "localhost")
 
 app = Flask("Writers Block API")
-CORS(app, origins=[f"{APIHOST}:3000"], supports_credentials=True)
+CORS(app, origins=[f"{FRONTEND_HOST}"], supports_credentials=True)
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
 
@@ -38,7 +39,7 @@ flow = Flow.from_client_secrets_file(
         "https://www.googleapis.com/auth/drive.readonly",
         "https://www.googleapis.com/auth/documents.readonly",
     ],
-    redirect_uri=f"{APIHOST}:8000/auth/callback"
+    redirect_uri=f"{BACKEND_HOST}/auth/callback"
 )
 
 def login_is_required(function):
@@ -82,13 +83,13 @@ def callback():
     session["name"] = id_info.get("name")
     session["access_token"] = credentials.token
 
-    return redirect(f"{APIHOST}:3000/")
+    return redirect(f"{FRONTEND_HOST}")
 
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(f"{APIHOST}:3000/")
+    return redirect(f"{FRONTEND_HOST}/home")
 
 
 @app.route("/")

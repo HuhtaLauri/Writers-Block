@@ -7,7 +7,7 @@ export default function FileList() {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const res = await fetch("http://localhost:8000/docs", {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/docs`, {
           credentials: "include",
         });
 

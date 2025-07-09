@@ -9,7 +9,7 @@ export default function FileViewer() {
   const [wordcountTarget, setWordcountTarget] = useState(0)
 
   const fetchContent = async () => {
-    const res = await fetch(`http://localhost:8000/docs/${fileId}/content`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/docs/${fileId}/content`, {
       credentials: "include",
     });
   

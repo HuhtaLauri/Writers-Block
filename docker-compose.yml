@@ -9,6 +9,13 @@ services:
       - 8000:8000
     env_file:
       - .env
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tolstoi.rule=Host(`tolstoi.datanuggets.io`)"
+      - "traefik.http.routers.tolstoi.entrypoints=websecure"
+      - "traefik.http.routers.tolstoi.tls.certresolver=myresolver"
 
   frontend:
     build:
@@ -18,3 +25,14 @@ services:
       - 3000:3000
     depends_on:
       - backend
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hemingway.rule=Host(`hemingway.datanuggets.io`)"
+      - "traefik.http.routers.hemingway.entrypoints=websecure"
+      - "traefik.http.routers.hemingway.tls.certresolver=myresolver"
+
+networks:
+  proxy:
+    external: true
