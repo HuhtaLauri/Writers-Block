@@ -1,0 +1,27 @@
+
+.docfile {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 0.75rem;
+}
+
+.file-name {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  word-break: break-word;
+}
+
+.file-link {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  word-break: break-word;
+}

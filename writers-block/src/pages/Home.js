@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/Home.css"
 
 export default function Home() {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ export default function Home() {
     window.location.href = `${process.env.REACT_APP_BACKEND_HOST}/login`;
   };
 
+
   const goToFiles = () => {
     navigate("/files");
   };
@@ -15,7 +17,7 @@ export default function Home() {
   return (
     <div style={{ padding: 20 }}>
       <h1>Google Drive Files Viewer</h1>
-      <button onClick={handleLogin}>Login with Google</button>
+      <button className='login-button' onClick={handleLogin}>Login with Google</button>
       <button onClick={goToFiles} style={{ marginLeft: 10 }}>
         List My Files
       </button>

@@ -89,7 +89,7 @@ def callback():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(f"{FRONTEND_HOST}/home")
+    return redirect(f"{FRONTEND_HOST}")
 
 
 @app.route("/")
@@ -111,7 +111,7 @@ def list_documents():
 
     params = {
         "pageSize": 10,
-        "fields": "files(id, name, mimeType, createdTime)"
+        "fields": "files(id, name, mimeType, createdTime, modifiedTime, iconLink)"
     }
 
     response = requests.get("https://www.googleapis.com/drive/v3/files", headers=headers, params=params)

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import DocFile from "../components/DocFile";
 
 export default function FileList() {
   const [files, setFiles] = useState(null);
@@ -32,9 +33,7 @@ export default function FileList() {
       <ul>
         {files &&
           files.map((file) => (
-            <li key={file.id}>
-              <Link to={`/file/${file.id}`}>{file.name}</Link>
-            </li>
+            DocFile(file={file}) 
           ))}
       </ul>
     </div>
